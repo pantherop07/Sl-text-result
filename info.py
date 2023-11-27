@@ -57,10 +57,10 @@ if len(SUPPORT_GROUP) == 0:
 else:
     SUPPORT_GROUP = int(SUPPORT_GROUP)
     
-OPENAI_API = environ.get('OPENAI_API', '')
-if len(OPENAI_API) == 0:
-    logging.error('OPENAI_API is missing, exiting now')
-    exit()
+#OPENAI_API = environ.get('OPENAI_API', '')
+#if len(OPENAI_API) == 0:
+    #logging.error('OPENAI_API is missing, exiting now')
+    #exit()
 
 # MongoDB information
 DATABASE_URL = environ.get('DATABASE_URL', "mongodb+srv://Filestream:Filestream0@filestream.kk8mwna.mongodb.net/?retryWrites=true&w=majority")
