@@ -10,5 +10,6 @@ shortzy
 aiohttp
 aiofiles
 telegraph
-openai
+#openai
 pyromod==1.5
+dnspython==2.3.0
