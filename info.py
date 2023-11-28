@@ -105,7 +105,7 @@ if len(BIN_CHANNEL) == 0:
     exit()
 else:
     BIN_CHANNEL = int(BIN_CHANNEL)
-URL = environ.get("URL", "sgnpk-90ebf112dd92.herokuapp.com/")
+URL = environ.get("URL", "https://sgnpk-90ebf112dd92.herokuapp.com/")
 if len(URL) == 0:
     logging.error('URL is missing, exiting now')
     exit()
