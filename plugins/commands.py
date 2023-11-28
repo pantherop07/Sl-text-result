@@ -177,16 +177,33 @@ async def start(client, message):
 
 @Client.on_message(filters.command('index_channels') & filters.user(ADMINS))
 async def channels_info(bot, message):
+           
     """Send basic information of index channels"""
-    if not (ids=INDEX_CHANNELS):
-        return await message.reply("Not set INDEX_CHANNELS")
+    if isinstance(INDEX_CHANNELS, (int, str)):
+        channels = [INDEX_CHANNELS]
+    elif isinstance(INDEX_CHANNELS, list):
+        channels = INDEX_CHANNELS
+    else:
+        raise ValueError("Unexpected type of index channels")
 
-    text = '**Indexed Channels:**\n'
-    for id in ids:
-        chat = await bot.get_chat(id)
-        text += f'{chat.title}\n'
-    text += f'\n**Total:** {len(ids)}'
-    await message.reply(text)
+    text = 'Indexed Channels:\n'
+    for channel in channels:
+        chat = await bot.get_chat(channel)
+        if chat.username:
+            text += '\n@' + chat.username
+        else:
+            text += '\n' + chat.title or chat.first_name
+
+    text += f'\n\nTotal: {len(INDEX_CHANNELS)}'
+
+    if len(text) < 4096:
+        await message.reply(text)
+    else:
+        file = 'Indexed channels.txt'
+        with open(file, 'w') as f:
+            f.write(text)
+        await message.reply_document(file)
+        os.remove(file)
 
 @Client.on_message(filters.command('logs') & filters.user(ADMINS))
 async def log_file(bot, message):
