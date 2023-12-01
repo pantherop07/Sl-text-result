@@ -67,8 +67,8 @@ async def leave_a_chat(bot, message):
         )
 
         await bot.leave_chat(chat)
-        await message.reply(f"Left the chat `{chat}`")
-    except Exception as e:
+        await db.delete_chat(chat)
+        await message.reply(f"<b>✅️ Successfully bot left from this group - `{chat}`</b>")
         await message.reply(f'Error - {e}')
 
 @Client.on_message(filters.command('ban_grp') & filters.user(ADMINS))
