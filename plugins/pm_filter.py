@@ -38,16 +38,8 @@ async def stream_downloader(bot, query):
         InlineKeyboardButton('❌ ᴄʟᴏsᴇ ❌', callback_data='close_data')
     ]]
     await query.edit_message_reply_markup(
-        reply_markup=InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ", url=online),
-                InlineKeyboardButton("ꜰᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=download)
-            ],[
-                InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
-            ]
-        ]
-    ))
+        reply_markup=InlineKeyboardMarkup(btn)
+    )
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
